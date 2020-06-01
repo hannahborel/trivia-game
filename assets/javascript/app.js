@@ -1,6 +1,9 @@
 $('#start').on('click', function(){
    game.start();
 })
+$(document).on('click', '#end', function(){
+    game.done();
+})
 
 var questions = [
     {
@@ -63,7 +66,7 @@ var questions = [
 var game ={
     correct: 0,
     incorrect: 0,
-    counter: 5,
+    counter: 120,
     countdown: function(){
         game.counter--;
         $('#counter').html(game.counter);
@@ -82,6 +85,7 @@ var game ={
                 $('#subwrapper').append("<input type= 'radio' name='question-" + i + "' value= '" + questions[i].answers[ii] + "'>" + questions[i].answers[ii])
             }
         }
+        $('#subwrapper').append("<br><button id ='end'> Done </button></br>")
         
     },
     done: function(){
