@@ -1,5 +1,6 @@
 $('#start').on('click', function(){
     $('#start').remove();
+    $('#title-wrapper').remove();
     game.loadQuestion();
 })
 

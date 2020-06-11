@@ -1,0 +1,105 @@
+
+body{
+    background-color:teal;
+}
+.wrapper{
+    text-align: center;
+}
+
+.centered{
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 10px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px,
+}
+
+
+#title, #night-text, #number{
+    font-family: 'Bad Script', cursive;
+    font-size: 7rem;
+    letter-spacing: .1rem;
+    color: hsl(0, 45%, 94%);
+    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff,
+                 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 
+                 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b,
+                 0 0 35px #C50303; 
+    padding: 0 3.5rem 0 3.5rem;
+}
+h1{
+    line-height: 1;
+}
+#title{
+    margin-top: 0;
+}
+#title, #night-text{
+    margin-bottom:3%;
+    
+}
+#night-text{
+  margin-top: 0;
+}
+
+#number{
+    display: inline;
+    font-family: 'Nanum Pen Script', cursive;
+}
+#start{
+    font-family: 'Bad Script', cursive;
+    color: white;
+
+    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #C50303; 
+    background-color: teal;
+    font-size:2rem;
+    font-weight: 800;
+    height: 75px ;
+    width: 150px;
+    margin-left: 26%;
+    margin-top: 10%;
+
+    box-shadow:
+    0 0 0.1vw  0.4vw #fff7f7,   
+    0 0 0.4vw  0.6vw #e97272, 
+    0 0   4vw  0.4vw #e50b0b,
+    inset 0 0 1.5vw  0.4vw #e50b0b,
+    inset 0 0 0.4vw  0.2vw #e97272,
+    inset 0 0 0.5vw  0.2vw #fff7f7;
+    border-radius: 1.5rem; 
+
+}
+
+#start:hover{
+
+    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px lightblue, 0 0 6px blue; 
+    box-shadow:
+    0 0 0.1vw  0.4vw #fff7f7,   
+    0 0 0.4vw  0.6vw lightblue, 
+    0 0   4vw  0.4vw blue,
+    inset 0 0 1.5vw  0.4vw blue,
+    inset 0 0 0.4vw  0.2vw #e97272,
+    inset 0 0 0.5vw  0.2vw #fff7f7;
+    transform: scale(1.1)
+}
+
+#title-wrapper{
+    box-sizing: border-box;
+    padding-top: .5rem;
+
+    box-shadow:
+    0 0 0.1vw  0.8vw #fff7f7,   
+    0 0 0.4vw  0.6vw #e97272, 
+    0 0   4vw  0.4vw #e50b0b,
+    inset 0 0 1.5vw  0.3vw #e50b0b,
+    inset 0 0 0.4vw  0.3vw #e97272,
+    inset 0 0 0.5vw  0.2vw #fff7f7;
+    border-radius: 1.5rem; 
+} ;
+
+
+
+
+
+      
