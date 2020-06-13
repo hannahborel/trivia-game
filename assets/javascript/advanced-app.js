@@ -1,4 +1,5 @@
 $('#start').on('click', function(){
+
     $('#start').remove();
     $('#title-wrapper').remove();
     game.loadQuestion();
@@ -81,7 +82,7 @@ var game = {
     },
     loadQuestion: function(){
         timer = setInterval(game.countdown, 1000);
-        $('#subwrapper').html('<h2> TIME REMAINING <span id="counter"> 30 </span> Seconds <h2>')
+        $('#subwrapper').html('<h2> <span id="counter"> 30 </span> <h2>')
         $('#subwrapper').append('<h2>' + questions[game.currentQuestion].question + '</h2>')
         for(var i =0; i < questions[game.currentQuestion].answers.length; i++){
             $('#subwrapper').append('<button class="answer-button" id="button" id="button-' +i+   '"data-name="'+ questions[game.currentQuestion].answers[i]+'"> ' + questions[game.currentQuestion].answers[i] + '</</button>')
@@ -98,23 +99,24 @@ var game = {
     timeUp: function(){
         clearInterval(timer);
         game.unanswered++;
-        $('#subwrapper').html('<h2> Out Of Time </h2>')
-        $('#subwrapper').append('<h3> The Correct Answer Was: ' + questions[game.currentQuestion].correctAnswer +'</h3>')
+        $('#subwrapper').html('<h2> Out of Time! </h2>')
+        $('#subwrapper').append('<h3> Correct Answer :   ' + questions[game.currentQuestion].correctAnswer +'</h3>')
         if(game.currentQuestion==questions.length-1){
             setTimeout(game.results,3*1000);
         }else{
             setTimeout(game.nextQuestion,3*1000);
         }
-
+        game.styleResult();
     }, 
     results: function(){
         clearInterval(timer);
-        $('#subwrapper').html("All DONE!")
-        $('#subwrapper').append('<h3>Correct: ' + game.correct + '</h3>');
-        $('#subwrapper').append('<h3>Incorrect: ' + game.incorrect+ '</h3>');
-        $('#subwrapper').append('<h3>Unanswered: ' + game.unanswered+ '</h3>');
+        $('#subwrapper').html(" ")
+        $('#subwrapper').append('<h3>correct: ' + game.correct + '</h3>');
+        $('#subwrapper').append('<h3>incorrect: ' + game.incorrect+ '</h3>');
+        $('#subwrapper').append('<h3>unanswered: ' + game.unanswered+ '</h3>');
         $('#subwrapper').append('<button id = "reset> Reset </button>');
-
+        game.styleFinal();
+      
     },
     clicked: function(event){
         clearInterval(timer);
@@ -129,20 +131,23 @@ var game = {
         console.log("CORRECT");
         clearInterval(timer);
         game.correct++
-        $('#subwrapper').html('<h2> YOU GOT IT RIGHT!</h2>')
+        $('#subwrapper').html("<h2> you're right!</h2>")
+        
         if(game.currentQuestion==questions.length-1){
             setTimeout(game.results,3*1000);
         }else{
             setTimeout(game.nextQuestion,3*1000);
         }
-
+         game.styleResult()
     },
+
     answerIncorrecetly: function(){
         console.log("WRONG");
         clearInterval(timer);
         game.incorrect++
-        $('#subwrapper').html('<h2> YOU GOT IT WRONG!</h2>')
-        $('#subwrapper').append('<h3> The Correct Answer Was: ' + questions[game.currentQuestion].correctAnswer +'</h3>')
+        $('#subwrapper').html("<h2> Sorry. That's Wrong. </h2>")
+        $('#subwrapper').append('<h3> Correct Answer :     ' + questions[game.currentQuestion].correctAnswer +'</h3>')
+        game.styleResult()
         if(game.currentQuestion==questions.length-1){
             setTimeout(game.results,3*1000);
         }else{
@@ -158,5 +163,25 @@ var game = {
         game.loadQuestion()
 
     },
-    
+    styleResult: function(){
+
+       document.querySelector("h2").style.cssText = "font-family: 'Bad Script', cursive; font-size: 4rem;letter-spacing: .1rem, color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
+
+       document.querySelector('h3').style.cssText =  "color: white; font-family: Lucida Grande; text-shadow: 1px 1px 2px black;"
+    },
+
+    styleFinal: function(){
+        
+       document.querySelector('#container').style.cssText = "box-shadow: 0 0 0.1vw  0.4vw #fff7f7,   0 0 0.4vw  0.6vw #e97272, 0 0   4vw  0.4vw #e50b0b, inset 0 0 1.5vw  0.4vw #e50b0b, inset 0 0 0.4vw  0.2vw #e97272, inset 0 0 0.5vw  0.2vw #fff7f7; border-radius: 1.5rem; padding: 5px"
+
+       let myElements = document.querySelectorAll("h3");
+
+            for (let i = 0; i < myElements.length; i++) {
+
+            myElements[i].style.cssText = "margin: 0; font-family: 'Bad Script', cursive; font-size: 4rem; color: #ffffff; letter-spacing: .1rem, line-height: 1; color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
+            
+            }
+
+    }
+
 }

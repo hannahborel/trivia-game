@@ -1,6 +1,8 @@
 
 body{
     background-color:teal;
+    background-size: cover;
+
 }
 .wrapper{
     text-align: center;
@@ -8,13 +10,13 @@ body{
 
 .centered{
     justify-content: center;
+    text-align: center;
     box-sizing: border-box;
     padding: 0 10px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 500px,
 }
 
 
@@ -26,11 +28,16 @@ body{
     text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff,
                  0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 
                  0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b,
-                 0 0 35px #C50303; 
+                 0 0 35px rgb(231, 58, 58); 
     padding: 0 3.5rem 0 3.5rem;
 }
 h1{
     line-height: 1;
+}
+h2{
+    color: white;
+    font-family: "Lucida Grande";
+    text-shadow: 1px 1px 2px black;
 }
 #title{
     margin-top: 0;
@@ -47,17 +54,19 @@ h1{
     display: inline;
     font-family: 'Nanum Pen Script', cursive;
 }
+
 #start{
     font-family: 'Bad Script', cursive;
     color: white;
+    text-align: center;
+    letter-spacing: 2px;
 
-    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #C50303; 
+    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #C50303, 0 0 10px #C50303, 0 0 15px #C50303; 
     background-color: teal;
     font-size:2rem;
     font-weight: 800;
     height: 75px ;
     width: 150px;
-    margin-left: 26%;
     margin-top: 10%;
 
     box-shadow:
@@ -73,33 +82,76 @@ h1{
 
 #start:hover{
 
-    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px lightblue, 0 0 6px blue; 
+    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px lightblue, 0 0 6px #2c4864,0 0 10px #2c4864; 
     box-shadow:
     0 0 0.1vw  0.4vw #fff7f7,   
     0 0 0.4vw  0.6vw lightblue, 
-    0 0   4vw  0.4vw blue,
-    inset 0 0 1.5vw  0.4vw blue,
-    inset 0 0 0.4vw  0.2vw #e97272,
+    0 0   4vw  0.4vw #385a7c,
+    inset 0 0 1.5vw  0.4vw #385a7c,
+    inset 0 0 0.4vw  0.2vw #385a7c,
     inset 0 0 0.5vw  0.2vw #fff7f7;
-    transform: scale(1.1)
+    transform: scale(1.1);
+    background-image: url(buttonback.jpg);
+    background-size: cover;
+    
 }
 
 #title-wrapper{
     box-sizing: border-box;
     padding-top: .5rem;
-
     box-shadow:
-    0 0 0.1vw  0.8vw #fff7f7,   
+    0 0 0.1vw  0.4vw #fff7f7,   
     0 0 0.4vw  0.6vw #e97272, 
-    0 0   4vw  0.4vw #e50b0b,
-    inset 0 0 1.5vw  0.3vw #e50b0b,
-    inset 0 0 0.4vw  0.3vw #e97272,
-    inset 0 0 0.5vw  0.2vw #fff7f7;
-    border-radius: 1.5rem; 
-} ;
+    0 0   4vw  0.3vw #e50b0b,
+    inset 0 0 1.5vw  0.2vw #e50b0b,
+    inset 0 0 0.4vw  0.2vw #e97272,
+    inset 0 0 0.5vw  0.1vw #fff7f7;
+    border-radius: 2rem; 
+};
 
+.question-box{
+    background-color: white;
+    color: white;
+}
 
+.answer-button{
 
+    width: 350px; 
+    height: 150px; 
+    margin: 1%; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color:teal; 
+    color: white;
+    letter-spacing: .1rem;
+    text-shadow: 2px, 2px, black;
+    border-radius: 20px; 
+    border:4px solid rgb(1, 77, 77);
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 0,0;
+    text-shadow: 1px 1px 2px black;
+}
 
+.answer-button:hover{
+    box-shadow:
+    0 0 0.1vw  0.2vw #fff7f7,   
+    0 0 0.4vw  0.4vw #e97272, 
+    0 0   4vw  0.3vw #e50b0b,
+    inset 0 0 1.5vw  0.2vw #e50b0b,
+    inset 0 0 0.4vw  0.2vw #e97272,
+    inset 0 0 0.5vw  0.1vw #fff7f7;
+    border-radius: .5rem; 
+    background-image: url(buttonback.jpg);
+    background-size: cover;
+    color: white
+}
+    
 
-      
+#counter{
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 3rem;
+    letter-spacing: 5px;
+    color: #e97272; 
+    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px rgb(185, 45, 45);
+
+}
