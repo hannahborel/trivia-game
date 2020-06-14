@@ -163,5 +163,6 @@ h2{
     }
      #start:hover{ 
         background: none;
+        box-shadow: none;
     }
 }
