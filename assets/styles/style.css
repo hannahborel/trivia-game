@@ -159,6 +159,7 @@ h2{
 @media (hover:none), (hover:on-demand) {
      .answer-button:hover{ 
         background: none;
+        box-shadow: none;
     }
      #start:hover{ 
         background: none;
