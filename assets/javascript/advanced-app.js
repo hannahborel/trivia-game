@@ -81,7 +81,7 @@ var game = {
         }
     },
     loadQuestion: function(){
-        // timer = setInterval(game.countdown, 1000);
+        timer = setInterval(game.countdown, 1000);
         game.styleContainer();
         $('#subwrapper').html('<h2> <span id="counter"> 30 </span> <h2>')
         $('#subwrapper').append('<h2>' + questions[game.currentQuestion].question + '</h2>')
