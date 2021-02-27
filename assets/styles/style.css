@@ -1,4 +1,4 @@
-
+/* 
 body{
     background-color:teal;
     background-size: cover;
@@ -206,4 +206,31 @@ h2{
 
 }
  
+ */
 
+body {
+    min-height: 100%;
+}
+
+ #container{
+    position: relative;
+    height: 812px;
+    max-width: 425px;
+    margin: auto;
+    padding: 1px;
+}
+#wrapper{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: -100px;
+    height: 200px;
+    text-align: center;
+}
+
+.correct{
+    border: 2px solid green
+}
+.incorrect{
+    border: 2px solid red
+}

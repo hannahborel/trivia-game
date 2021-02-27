@@ -5,8 +5,13 @@ $('#start').on('click', function(){
     game.loadQuestion();
 })
 
-$(document).on('click','.answer-button', function(event){
-    game.clicked(event);
+
+
+$(document).on('click','#submit', function(){
+   game.clickedSubmit()
+})
+$(document).on('click','#next', function(){
+   game.clickedNext()
 })
 $(document).on('click', '#resest', function(){
     game.reset();
@@ -81,15 +86,83 @@ var game = {
         }
     },
     loadQuestion: function(){
-        timer = setInterval(game.countdown, 1000);
-        game.styleContainer();
+        // timer = setInterval(game.countdown, 1000);
+        // game.styleContainer();
         $('#subwrapper').html('<h2> <span id="counter"> 30 </span> <h2>')
         $('#subwrapper').append('<h2>' + questions[game.currentQuestion].question + '</h2>')
+
         for(var i =0; i < questions[game.currentQuestion].answers.length; i++){
-            $('#subwrapper').append('<button class="answer-button" id="button" id="button-' +i+   '"data-name="'+ questions[game.currentQuestion].answers[i]+'"> ' + questions[game.currentQuestion].answers[i] + '</</button>')
+            
+            var valueName = questions[game.currentQuestion].answers[i]
+
+            $('#subwrapper').append('<div class="answer-container" id="container-'+[i]+'">' + valueName +'<input type ="checkbox" class= "answer" id="answer-' +[i]+ '" name= "answer" value="'+ valueName +'" ></div>')
         }
-         
+
+        $('#subwrapper').append('<button id = "submit"> Submit </button>')
+        
     },
+
+    clickedSubmit: function(){
+        $('#submit').hide();
+        const next = $('<button id="next">Next</button>')
+        $('#subwrapper').append(next)
+
+        userAnswer = $("input:checked").val()
+        game.checkAnswer(userAnswer)
+        console.log(userAnswer)
+
+    },
+
+    checkAnswer: function(userAnswer){
+        console.log(userAnswer)
+        console.log(questions[game.currentQuestion].correctAnswer)
+        
+
+        if(userAnswer.toLowerCase()=== questions[game.currentQuestion].correctAnswer.toLowerCase()){
+            console.log("correct")
+            game.answerCorrectly();
+        }else{
+            game.answerIncorrecetly();
+        }
+    },
+
+    answerCorrectly: function(){
+        console.log("-----User Answered Correctly-----");
+
+        let selected = $("input:checked")[0].id;
+        console.log("Answer Selected: ",selected)
+        $('#'+selected).parent().addClass("correct")
+
+        // clearInterval(timer);
+        game.correct++
+    },
+
+    answerIncorrecetly: function(){
+        console.log("-----User Answered INorrectly-----");
+        console.log("----Answer Object------: ", questions[game.currentQuestion].correctAnswer)
+
+        $(".answer").each(function(){
+            let selected = $("input:checked")[0].id;
+            if($(this).val().toLowerCase() === questions[game.currentQuestion].correctAnswer.toLowerCase()){
+                console.log("CORRECT: ", $(this).val())
+                $(this).parent().addClass("correct")
+                $('#'+selected).parent().addClass("incorrect")
+            }else{
+                console.log("*Incorrect Answers*: ", $(this).val().toLowerCase())
+            }
+        })
+        game.incorrect++
+    },
+
+    clickedNext: function(){
+
+        if(game.currentQuestion==questions.length-1){
+            setTimeout(game.results);
+        }else{
+            setTimeout(game.nextQuestion);
+        }   
+    },
+
     nextQuestion: function(){
         game.counter = 30;
         $('#counter').html(game.counter)
@@ -109,52 +182,17 @@ var game = {
         }
         game.styleResult();
     }, 
+
     results: function(){
-        clearInterval(timer);
+        // clearInterval(timer);
         $('#subwrapper').html(" ")
         $('#subwrapper').append('<h3>correct: ' + game.correct + '</h3>');
         $('#subwrapper').append('<h3>incorrect: ' + game.incorrect+ '</h3>');
         $('#subwrapper').append('<h3>unanswered: ' + game.unanswered+ '</h3>');
         $('#subwrapper').append('<button id = "reset> Reset </button>');
         game.styleFinal();
-      
-    },
-    clicked: function(event){
-        clearInterval(timer);
-        if($(event.target).data("name")==questions[game.currentQuestion].correctAnswer){
-            game.answerCorrectly(); 
-        }else{
-            game.answerIncorrecetly();
-        }
-
-    },
-    answerCorrectly: function(){
-        console.log("CORRECT");
-        clearInterval(timer);
-        game.correct++
-        $('#subwrapper').html("<h2> you're right!</h2>")
-        
-        if(game.currentQuestion==questions.length-1){
-            setTimeout(game.results,3*1000);
-        }else{
-            setTimeout(game.nextQuestion,3*1000);
-        }
-         game.styleResult()
     },
 
-    answerIncorrecetly: function(){
-        console.log("WRONG");
-        clearInterval(timer);
-        game.incorrect++
-        $('#subwrapper').html("<h2> Sorry. That's Wrong. </h2>")
-        $('#subwrapper').append('<h3> Correct Answer :     ' + questions[game.currentQuestion].correctAnswer +'</h3>')
-        game.styleResult()
-        if(game.currentQuestion==questions.length-1){
-            setTimeout(game.results,3*1000);
-        }else{
-            setTimeout(game.nextQuestion,3*1000);
-        }
-    },
     reset: function(){
         game.currentQuestion =0 ;
         game.counter = 0;
@@ -162,33 +200,32 @@ var game = {
         game.incorrect = 0;
         game.unanswered = 0;
         game.loadQuestion()
-
     },
-    styleResult: function(){
+    // styleResult: function(){
 
-       document.querySelector("h2").style.cssText = "font-family: 'Bad Script', cursive; font-size: 4rem;letter-spacing: .1rem, color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
+    //    document.querySelector("h2").style.cssText = "font-family: 'Bad Script', cursive; font-size: 4rem;letter-spacing: .1rem, color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
 
-       document.querySelector('h3').style.cssText =  "color: white; font-family: Lucida Grande; text-shadow: 1px 1px 2px black;"
-    },
+    //    document.querySelector('h3').style.cssText =  "color: white; font-family: Lucida Grande; text-shadow: 1px 1px 2px black;"
+    // },
 
-    styleFinal: function(){
+    // styleFinal: function(){
         
-       document.querySelector('#container').style.cssText = "box-shadow: 0 0 0.1vw  0.4vw #fff7f7,   0 0 0.4vw  0.6vw #e97272, 0 0   4vw  0.4vw #e50b0b, inset 0 0 1.5vw  0.4vw #e50b0b, inset 0 0 0.4vw  0.2vw #e97272, inset 0 0 0.5vw  0.2vw #fff7f7; border-radius: 1.5rem; padding: 5px"
+    //    document.querySelector('#container').style.cssText = "box-shadow: 0 0 0.1vw  0.4vw #fff7f7,   0 0 0.4vw  0.6vw #e97272, 0 0   4vw  0.4vw #e50b0b, inset 0 0 1.5vw  0.4vw #e50b0b, inset 0 0 0.4vw  0.2vw #e97272, inset 0 0 0.5vw  0.2vw #fff7f7; border-radius: 1.5rem; padding: 5px"
 
-       let myElements = document.querySelectorAll("h3");
+    //    let myElements = document.querySelectorAll("h3");
 
-            for (let i = 0; i < myElements.length; i++) {
+    //         for (let i = 0; i < myElements.length; i++) {
 
-            myElements[i].style.cssText = "margin: 0; font-family: 'Bad Script', cursive; font-size: 4rem; color: #ffffff; letter-spacing: .1rem, line-height: 1; color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
+    //         myElements[i].style.cssText = "margin: 0; font-family: 'Bad Script', cursive; font-size: 4rem; color: #ffffff; letter-spacing: .1rem, line-height: 1; color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
             
-            }
+    //         }
 
-    },
-    styleContainer: function(){
+    // },
+    // styleContainer: function(){
         
-       document.querySelector('#container').style.cssText = "width: 900px"
+    //    document.querySelector('#container').style.cssText = "width: 900px"
 
-    },
+    // },
    
 
 }
