@@ -88,14 +88,14 @@ var game = {
     loadQuestion: function(){
         // timer = setInterval(game.countdown, 1000);
         // game.styleContainer();
-        $('#subwrapper').html('<h2> <span id="counter"> 30 </span> <h2>')
+        $('#subwrapper').html('<div class="time-bar" data-style="smooth" style="--duration: 30;"><div class="color-bar"></div></div>')
         $('#subwrapper').append('<h2>' + questions[game.currentQuestion].question + '</h2>')
 
         for(var i =0; i < questions[game.currentQuestion].answers.length; i++){
             
             var valueName = questions[game.currentQuestion].answers[i]
 
-            $('#subwrapper').append('<div class="answer-container" id="container-'+[i]+'">' + valueName +'<input type ="checkbox" class= "answer" id="answer-' +[i]+ '" name= "answer" value="'+ valueName +'" ></div>')
+            $('#subwrapper').append('<div class="answer-container" id="container-'+[i]+'">' + valueName +'<input type ="radio" name= "radio"  class= "answer" id="answer-' +[i]+ '" value="'+ valueName +'" ></div>')
         }
 
         $('#subwrapper').append('<button id = "submit"> Submit </button>')
@@ -107,9 +107,11 @@ var game = {
         const next = $('<button id="next">Next</button>')
         $('#subwrapper').append(next)
 
-        userAnswer = $("input:checked").val()
+        $('input:radio').attr("disabled", true)
+
+        userAnswer = $("input[type='radio']:checked").val()
         game.checkAnswer(userAnswer)
-        console.log(userAnswer)
+        console.log("---UserAnswer---",userAnswer)
 
     },
 
@@ -139,14 +141,13 @@ var game = {
 
     answerIncorrecetly: function(){
         console.log("-----User Answered INorrectly-----");
-        console.log("----Answer Object------: ", questions[game.currentQuestion].correctAnswer)
+       
 
         $(".answer").each(function(){
-            let selected = $("input:checked")[0].id;
+        
             if($(this).val().toLowerCase() === questions[game.currentQuestion].correctAnswer.toLowerCase()){
                 console.log("CORRECT: ", $(this).val())
                 $(this).parent().addClass("correct")
-                $('#'+selected).parent().addClass("incorrect")
             }else{
                 console.log("*Incorrect Answers*: ", $(this).val().toLowerCase())
             }

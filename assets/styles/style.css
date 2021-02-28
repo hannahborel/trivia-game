@@ -212,13 +212,41 @@ body {
     min-height: 100%;
 }
 
+input[type="radio"] {
+    -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
+    -moz-appearance: checkbox;    /* Firefox */
+    -ms-appearance: checkbox;     /* not currently supported */
+  }
+
  #container{
+    text-align: center;
     position: relative;
     height: 812px;
     max-width: 425px;
     margin: auto;
     padding: 1px;
 }
+
+.time-bar{
+    margin: auto;
+    height: 34px;
+    width: 70%;
+    opacity: 0.42;
+    background: #EEEBEB;
+    border-radius: 50px;
+}
+
+.color-bar{
+    margin: 0;
+    height: 34px;
+    opacity: 0.92;
+    background-image: linear-gradient(90deg, #E57186 32%, #EDD7DE 95%);
+    border-radius: 50px;
+    width: 0px;
+    animation: timer 30s linear;
+}
+
+
 #wrapper{
     width: 100%;
     position: absolute;
@@ -234,3 +262,12 @@ body {
 .incorrect{
     border: 2px solid red
 }
+
+@keyframes timer {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+  }
