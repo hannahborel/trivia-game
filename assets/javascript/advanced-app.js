@@ -5,8 +5,6 @@ $('#start').on('click', function(){
     game.loadQuestion();
 })
 
-
-
 $(document).on('click','#submit', function(){
    game.clickedSubmit()
 })
@@ -25,7 +23,7 @@ var questions = [
     },
     {
         question: "Which of the following is not an original Beanie Baby?",
-        answers: ["Patti the Platypus", "Chocolate the Moose","Legs the Frog","Happy the Hippo"],
+        answers: ["Patti the Platypus", "Chocolate the Moose","Legs the Frog","Happy The Hippo"],
         correctAnswer: "Happy The Hippo"
     },
     {
@@ -55,7 +53,7 @@ var questions = [
     },
     {
         question: "What's the first book in R.L. Stine's 'Goosebumps' series?",
-        answers: ["Under the Magician's Spell", "One Day at Horor Land", "Welcome to Dead House", "Diary of a Mad Mummy"],
+        answers: ["Under the Magician's Spell", "One Day at Horor Land", "Welcome to the Dead House", "Diary of a Mad Mummy"],
         correctAnswer: "Welcome to the Dead House"
     },
     {
@@ -69,11 +67,11 @@ var questions = [
         correctAnswer: "Thier Religion"
     },
 ]
-
 var game = {
     questions: questions,
     currentQuestion: 0,
-    counter: 30,
+    questionNumber: 0,
+    counter: 20,
     correct: 0,
     incorrect: 0,
     unanswered: 0,
@@ -85,25 +83,37 @@ var game = {
             game.timeUp();
         }
     },
+
+    startStyle: function(){
+        $('#container').css({"background":" linear-gradient(180deg, rgba(31,70,160,0.64) 2%, rgba(23,65,155,0.70) 29%, rgba(9,23,53,0.74) 100%), url(../background.png)"})
+
+       
+    },
+
     loadQuestion: function(){
-        // timer = setInterval(game.countdown, 1000);
+        timer = setInterval(game.countdown, 1000);
+        game.questionNumber++;
+        game.startStyle()
         // game.styleContainer();
-        $('#subwrapper').html('<div class="time-bar" data-style="smooth" style="--duration: 30;"><div class="color-bar"></div></div>')
-        $('#subwrapper').append('<h2>' + questions[game.currentQuestion].question + '</h2>')
+       
+        $('#subwrapper').html('<div class="time-bar" data-style="smooth" style="--duration: 30;"><div class="color-bar"></div></div><h2 class=question-heading>Question <span class="question-number">'+game.questionNumber+'</span> /10</h2><span class="line"></span>')
+
+        $('#subwrapper').append('<h2 class="question">' + questions[game.currentQuestion].question + '</h2>')
 
         for(var i =0; i < questions[game.currentQuestion].answers.length; i++){
             
             var valueName = questions[game.currentQuestion].answers[i]
 
-            $('#subwrapper').append('<div class="answer-container" id="container-'+[i]+'">' + valueName +'<input type ="radio" name= "radio"  class= "answer" id="answer-' +[i]+ '" value="'+ valueName +'" ></div>')
+            $('#subwrapper').append('<div class="answer-container" id="container-'+[i]+'"><label for="answer-'+[i]+'">' + valueName +'<input type ="radio" name= "radio"  class= "answer" id="answer-' +[i]+ '" value="'+ valueName +'"> <span class="checkmark"></span></label></div>')
         }
 
         $('#subwrapper').append('<button id = "submit"> Submit </button>')
-        
     },
 
     clickedSubmit: function(){
+        game.highlightCorrect()
         $('#submit').hide();
+        $('.time-bar').hide();
         const next = $('<button id="next">Next</button>')
         $('#subwrapper').append(next)
 
@@ -120,7 +130,7 @@ var game = {
         console.log(questions[game.currentQuestion].correctAnswer)
         
 
-        if(userAnswer.toLowerCase()=== questions[game.currentQuestion].correctAnswer.toLowerCase()){
+        if(userAnswer=== questions[game.currentQuestion].correctAnswer){
             console.log("correct")
             game.answerCorrectly();
         }else{
@@ -128,30 +138,25 @@ var game = {
         }
     },
 
+    highlightCorrect: function(){
+        console.log('higlightCorrect()')
+        
+        let correctValue= questions[game.currentQuestion].correctAnswer
+        console.log(correctValue)
+          console.log($('div').find("input[value='" +correctValue +"']").parent())
+            var parentSelector = $('div').find("input[value='" +correctValue +"']").parent()
+           parentSelector.parent().addClass("correct")
+    },
+
     answerCorrectly: function(){
         console.log("-----User Answered Correctly-----");
-
-        let selected = $("input:checked")[0].id;
-        console.log("Answer Selected: ",selected)
-        $('#'+selected).parent().addClass("correct")
-
-        // clearInterval(timer);
+        clearInterval(timer);
         game.correct++
     },
 
     answerIncorrecetly: function(){
-        console.log("-----User Answered INorrectly-----");
-       
-
-        $(".answer").each(function(){
-        
-            if($(this).val().toLowerCase() === questions[game.currentQuestion].correctAnswer.toLowerCase()){
-                console.log("CORRECT: ", $(this).val())
-                $(this).parent().addClass("correct")
-            }else{
-                console.log("*Incorrect Answers*: ", $(this).val().toLowerCase())
-            }
-        })
+        console.log("-----User Answered INorrectly-----")
+        clearInterval(timer);
         game.incorrect++
     },
 
@@ -165,23 +170,22 @@ var game = {
     },
 
     nextQuestion: function(){
-        game.counter = 30;
+        game.counter = 20;
         $('#counter').html(game.counter)
         game.currentQuestion++
         game.loadQuestion();
 
     }, 
     timeUp: function(){
+        // game.clickedSubmit();
         clearInterval(timer);
         game.unanswered++;
-        $('#subwrapper').html('<h2> Out of Time! </h2>')
-        $('#subwrapper').append('<h3> Correct Answer :   ' + questions[game.currentQuestion].correctAnswer +'</h3>')
+
         if(game.currentQuestion==questions.length-1){
             setTimeout(game.results,3*1000);
         }else{
-            setTimeout(game.nextQuestion,3*1000);
+
         }
-        game.styleResult();
     }, 
 
     results: function(){
@@ -197,36 +201,12 @@ var game = {
     reset: function(){
         game.currentQuestion =0 ;
         game.counter = 0;
+        game.questionNumber = 0;
         game.correct = 0;
         game.incorrect = 0;
         game.unanswered = 0;
         game.loadQuestion()
     },
-    // styleResult: function(){
 
-    //    document.querySelector("h2").style.cssText = "font-family: 'Bad Script', cursive; font-size: 4rem;letter-spacing: .1rem, color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
-
-    //    document.querySelector('h3').style.cssText =  "color: white; font-family: Lucida Grande; text-shadow: 1px 1px 2px black;"
-    // },
-
-    // styleFinal: function(){
-        
-    //    document.querySelector('#container').style.cssText = "box-shadow: 0 0 0.1vw  0.4vw #fff7f7,   0 0 0.4vw  0.6vw #e97272, 0 0   4vw  0.4vw #e50b0b, inset 0 0 1.5vw  0.4vw #e50b0b, inset 0 0 0.4vw  0.2vw #e97272, inset 0 0 0.5vw  0.2vw #fff7f7; border-radius: 1.5rem; padding: 5px"
-
-    //    let myElements = document.querySelectorAll("h3");
-
-    //         for (let i = 0; i < myElements.length; i++) {
-
-    //         myElements[i].style.cssText = "margin: 0; font-family: 'Bad Script', cursive; font-size: 4rem; color: #ffffff; letter-spacing: .1rem, line-height: 1; color: hsl(0, 45%, 94%); text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff, 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b, 0 0 35px rgb(231, 58, 58); padding: 0 3.5rem 0 3.5rem;"
-            
-    //         }
-
-    // },
-    // styleContainer: function(){
-        
-    //    document.querySelector('#container').style.cssText = "width: 900px"
-
-    // },
-   
 
 }

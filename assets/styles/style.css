@@ -208,8 +208,19 @@ h2{
  
  */
 
+html{
+    max-width: 100%
+}
 body {
-    min-height: 100%;
+    width:100%;
+    overflow-x:hidden;
+    font-family: Roboto;
+    color: #D8D8D8;
+   
+}
+
+#title-wrapper{
+    margin-top: 70%;
 }
 
 input[type="radio"] {
@@ -219,45 +230,145 @@ input[type="radio"] {
   }
 
  #container{
+     background: url(background.png);
+     background-repeat: no-repeat;
     text-align: center;
     position: relative;
     height: 812px;
     max-width: 425px;
     margin: auto;
     padding: 1px;
+
 }
 
 .time-bar{
-    margin: auto;
+    margin: 0 auto 12%;
     height: 34px;
-    width: 70%;
-    opacity: 0.42;
-    background: #EEEBEB;
+    width: 100%;
+    background: url(timebar-bg.png);
+    background-repeat: no-repeat;
     border-radius: 50px;
 }
 
 .color-bar{
     margin: 0;
+    opacity: 100%;
     height: 34px;
-    opacity: 0.92;
-    background-image: linear-gradient(90deg, #E57186 32%, #EDD7DE 95%);
+    background: linear-gradient(90deg, #E57186 32%, #EDD7DE 95%);
     border-radius: 50px;
     width: 0px;
-    animation: timer 30s linear;
+    animation: timer 20s linear;
 }
-
 
 #wrapper{
     width: 100%;
+    padding: 0 12%;
+    box-sizing: border-box;
     position: absolute;
     top: 50%;
-    margin-top: -100px;
-    height: 200px;
+    margin-top: -320px;
+    height: 640px;
     text-align: center;
 }
 
+h2{
+    text-align: left;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+h2.question-heading{
+margin: 0;
+}
+
+.question-number{
+    font-size: 24px;
+}
+
+.line{
+    width:100%;
+    text-align: left;
+}
+.line:after{
+    content:".....................................";
+    letter-spacing: 4px;
+    text-align: left;
+}
+
+h2.question{
+    width: 90%;
+    margin: 10% 0 15% 0;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.answer-container{
+    box-sizing: content-box;
+    width: 290px;
+    height: 55px;
+    margin: 25px auto;
+    padding: 0px 5px 0px 15px;
+    text-align: left;
+    background-image: linear-gradient(90deg, #263A9B 9%, #173192 40%, #243D90 86%);
+    border: 1px solid #E7E7F5;
+    border-radius: 19px; 
+}
+
+label{
+    width: 70%;
+    font-size: 12px;
+    line-height: 55px;
+}
+
+input{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.checkmark {
+    margin: 10px;
+    float: right;
+    height: 25px;
+    width: 25px;
+    border: 3px solid #eee;
+    border-radius: 50%;
+  }
+
+  .answer-container:hover input ~ .checkmark {
+    background-color: #2196F3;
+  }
+
+  .answer-container input:checked ~ .checkmark {
+    background-color: #2196F3;
+    background-image: url(checkmark.png);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #submit ,#start, #next{
+    border: none;
+    background: radial-gradient(#F5A062,#D57036);
+    box-shadow: 0 3px 6px rgba(244,183,148,100);
+    border-radius: 22.5px;
+    border: none;
+    width: 120px;
+    height: 45px;
+    color: white;
+    font-size: 14px;
+    font-family: Roboto;
+    letter-spacing: 1px;
+    margin: 20px;
+
+  }
+
+  #submit:hover {
+transform: scale(1.2);
+  }
+
 .correct{
-    border: 2px solid green
+    border: 5px solid #3EDBB4;
+    box-shadow: 1px 0 10px 0 #38C3A6;
+    border-radius: 19px;
 }
 .incorrect{
     border: 2px solid red
@@ -265,7 +376,7 @@ input[type="radio"] {
 
 @keyframes timer {
     0% {
-        width: 0%;
+        width: 5%;
     }
     100% {
         width: 100%;
