@@ -8,11 +8,17 @@ $('#start').on('click', function(){
 $(document).on('click','#submit', function(){
    game.clickedSubmit()
 })
+
 $(document).on('click','#next', function(){
    game.clickedNext()
 })
+
 $(document).on('click', '#resest', function(){
     game.reset();
+})
+
+$(document).on('click', '#done', function(){
+    game.clickedDone();
 })
 
 var questions = [
@@ -85,8 +91,9 @@ var game = {
     },
 
     startStyle: function(){
-        $('#container').css({"background":" linear-gradient(180deg, rgba(31,70,160,0.64) 2%, rgba(23,65,155,0.70) 29%, rgba(9,23,53,0.74) 100%), url(../background.png)"})
-
+        $('#container').css({
+            "background":"url(assets/styles/dark-bg.png)", "background-size":"cover",
+        })
        
     },
 
@@ -94,7 +101,6 @@ var game = {
         timer = setInterval(game.countdown, 1000);
         game.questionNumber++;
         game.startStyle()
-        // game.styleContainer();
        
         $('#subwrapper').html('<div class="time-bar" data-style="smooth" style="--duration: 30;"><div class="color-bar"></div></div><h2 class=question-heading>Question <span class="question-number">'+game.questionNumber+'</span> /10</h2><span class="line"></span>')
 
@@ -113,7 +119,7 @@ var game = {
     clickedSubmit: function(){
         game.highlightCorrect()
         $('#submit').hide();
-        $('.time-bar').hide();
+        // $('.time-bar').hide();
         const next = $('<button id="next">Next</button>')
         $('#subwrapper').append(next)
 
@@ -177,7 +183,7 @@ var game = {
 
     }, 
     timeUp: function(){
-        // game.clickedSubmit();
+        game.clickedSubmit();
         clearInterval(timer);
         game.unanswered++;
 
@@ -189,13 +195,24 @@ var game = {
     }, 
 
     results: function(){
-        // clearInterval(timer);
+        clearInterval(timer);
         $('#subwrapper').html(" ")
-        $('#subwrapper').append('<h3>correct: ' + game.correct + '</h3>');
-        $('#subwrapper').append('<h3>incorrect: ' + game.incorrect+ '</h3>');
-        $('#subwrapper').append('<h3>unanswered: ' + game.unanswered+ '</h3>');
-        $('#subwrapper').append('<button id = "reset> Reset </button>');
-        game.styleFinal();
+        if(game.correct%questions.length > 0.69){
+            $('#subwrapper').append('<h3 class="score">'+ game.correct +' /  ' + questions.length +'</h3>');
+            $('#subwrapper').append('<h4 class="results"> You must be a 90s kid!</h>');
+            console.log("great job")
+        }else{
+            $('#subwrapper').append('<h3 class="score">'+ game.correct +' /  ' + questions.length +'</h3>');
+            $('#subwrapper').append('<h4 class="results"> Gen Z is cool too I guess.</h>');
+            console.log("loser")
+        }
+       
+    $('#subwrapper').append('<button id="done"> Play Again </button>')
+    },
+
+    clickedDone: function(){
+    window.location.reload();
+    game.reset()
     },
 
     reset: function(){

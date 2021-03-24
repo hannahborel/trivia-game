@@ -213,6 +213,7 @@ html{
 }
 body {
     width:100%;
+    margin: auto;
     overflow-x:hidden;
     font-family: Roboto;
     color: #D8D8D8;
@@ -313,6 +314,21 @@ h2.question{
     border: 1px solid #E7E7F5;
     border-radius: 19px; 
 }
+#container-0{
+    background: #1E3C94;
+}
+
+#container-1{
+    background: #1A3481;
+}
+
+#container-2{
+    background: #1B367A;
+}
+
+#container-3{
+    background: #16336E;
+}
 
 label{
     width: 70%;
@@ -344,11 +360,10 @@ input{
     background-repeat: no-repeat;
     background-position: center;
   }
-
-  #submit ,#start, #next{
+button{
     border: none;
-    background: radial-gradient(#F5A062,#D57036);
-    box-shadow: 0 3px 6px rgba(244,183,148,100);
+    background: radial-gradient(#F5A062,#FF650C);
+    box-shadow: rgba(255,101,12,59);
     border-radius: 22.5px;
     border: none;
     width: 120px;
