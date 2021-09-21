@@ -105,12 +105,14 @@ var game = {
         $('#subwrapper').html('<div class="time-bar" data-style="smooth" style="--duration: 30;"><div class="color-bar"></div></div><h2 class=question-heading>Question <span class="question-number">'+game.questionNumber+'</span> /10</h2><span class="line"></span>')
 
         $('#subwrapper').append('<h2 class="question">' + questions[game.currentQuestion].question + '</h2>')
+        $('#subwrapper').append('<div class="question-container"</div>')
 
         for(var i =0; i < questions[game.currentQuestion].answers.length; i++){
             
+            console.log('print question"')
             var valueName = questions[game.currentQuestion].answers[i]
 
-            $('#subwrapper').append('<div class="answer-container" id="container-'+[i]+'"><label for="answer-'+[i]+'">' + valueName +'<input type ="radio" name= "radio"  class= "answer" id="answer-' +[i]+ '" value="'+ valueName +'"> <span class="checkmark"></span></label></div>')
+            $('.question-container').append('<div class="answer-container" id="container-'+[i]+'"><label for="answer-'+[i]+'">' + valueName +'<input type ="radio" name= "radio"  class= "answer" id="answer-' +[i]+ '" value="'+ valueName +'"><span class="checkmark"></span></label></div>')
         }
 
         $('#subwrapper').append('<button id = "submit"> Submit </button>')
@@ -197,13 +199,12 @@ var game = {
     results: function(){
         clearInterval(timer);
         $('#subwrapper').html(" ")
+        $('#subwrapper').append('<div class="results"></div>')
         if(game.correct%questions.length > 0.69){
-            $('#subwrapper').append('<h3 class="score">'+ game.correct +' /  ' + questions.length +'</h3>');
-            $('#subwrapper').append('<h4 class="results"> You must be a 90s kid!</h>');
+            $('.results').append('<h3 class="score">'+ game.correct +' /  ' + questions.length +'</h3><h4 class="results-text"> You must be a 90s kid!</h4>');
             console.log("great job")
         }else{
-            $('#subwrapper').append('<h3 class="score">'+ game.correct +' /  ' + questions.length +'</h3>');
-            $('#subwrapper').append('<h4 class="results"> Gen Z is cool too I guess.</h>');
+            $('.results').append('<h3 class="score">'+ game.correct +' /  ' + questions.length +'</h3><h4 class="results-text"> Gen Z is cool too I guess.</h4>');
             console.log("loser")
         }
        

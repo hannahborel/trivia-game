@@ -1,213 +1,12 @@
-/* 
-body{
-    background-color:teal;
-    background-size: cover;
 
-}
-.wrapper{
-    text-align: center;
-}
-
-.centered{
-    justify-content: center;
-    text-align: center;
-    box-sizing: border-box;
-    padding: 0 10px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-
-#title, #night-text, #number{
-    font-family: 'Bad Script', cursive;
-    font-size: 10rem;
-    letter-spacing: .1rem;
-    color: hsl(0, 45%, 94%);
-    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff,
-                 0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 
-                 0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b,
-                 0 0 35px rgb(231, 58, 58); 
-    padding: 0 3.5rem 0 3.5rem;
-}
-h1{
-    line-height: 1;
-}
-h2{
-    color: white;
-    font-family: "Lucida Grande";
-    text-shadow: 1px 1px 2px black;
-}
-#title{
-    margin-top: 0;
-}
-#title, #night-text{
-    margin-bottom:3%;
-    
-}
-#night-text{
-  margin-top: 0;
-}
-
-#number{
-    display: inline;
-    font-family: 'Nanum Pen Script', cursive;
-}
-
-#start{
-    font-family: 'Bad Script', cursive;
-    color: white;
-    text-align: center;
-    letter-spacing: 2px;
-    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px #ffff,
-    0 0 6px #f25757, 0 0 10px #f25757, 0 0 15px #f25757, 
-    0 0 20px #e50b0b, 0 0 25px #e50b0b, 0 0 30px #e50b0b,
-    0 0 35px rgb(231, 58, 58); 
-    background-color: teal;
-    font-size:4rem;
-    font-weight: 800;
-    text-align: center;
-    height: 130px ;
-    width: 250px;
-    margin-top: 10%;
-
-    box-shadow:
-    0 0 0.1vw  0.4vw #fff7f7,   
-    0 0 0.4vw  0.6vw #e97272, 
-    0 0   4vw  0.4vw #e50b0b,
-    inset 0 0 1.5vw  0.4vw #e50b0b,
-    inset 0 0 0.4vw  0.2vw #e97272,
-    inset 0 0 0.5vw  0.2vw #fff7f7;
-    border-radius: 1.5rem; 
-
-}
-
-#start:hover{
-
-    text-shadow: 0px 0px 1px #ffff, 0px 0px 3px lightblue, 0 0 6px #2c4864,0 0 10px #2c4864; 
-    box-shadow:
-    0 0 0.1vw  0.4vw #fff7f7,   
-    0 0 0.4vw  0.6vw lightblue, 
-    0 0   4vw  0.4vw #385a7c,
-    inset 0 0 1.5vw  0.4vw #385a7c,
-    inset 0 0 0.4vw  0.2vw #385a7c,
-    inset 0 0 0.5vw  0.2vw #fff7f7;
-    transform: scale(1.1);
-    background-image: url(buttonback.jpg);
-    background-size: cover;
-    
-}
-
-#title-wrapper{
-    box-sizing: border-box;
-    padding-top: .5rem;
-    box-shadow:
-    0 0 0.1vw  0.4vw #fff7f7,   
-    0 0 0.4vw  0.6vw #e97272, 
-    0 0   4vw  0.3vw #e50b0b,
-    inset 0 0 1.5vw  0.2vw #e50b0b,
-    inset 0 0 0.4vw  0.2vw #e97272,
-    inset 0 0 0.5vw  0.1vw #fff7f7;
-    border-radius: 2rem; 
-};
-
-.question-box{
-    background-color: white;
-    color: white;
-}
-
-.answer-button{
-
-    width: 350px; 
-    height: 150px; 
-    margin: 1%; 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color:teal; 
-    color: white;
-    letter-spacing: .1rem;
-    text-shadow: 2px, 2px, black;
-    border-radius: 20px; 
-    border:4px solid rgb(1, 77, 77);
-    font-size: 18px;
-    font-weight: 600;
-    margin-left: 0,0;
-    text-shadow: 1px 1px 2px black;
-}
-
-.answer-button:hover{
-    box-shadow:
-    0 0 0.1vw  0.2vw #fff7f7,   
-    0 0 0.4vw  0.4vw #e97272, 
-    0 0   4vw  0.3vw #e50b0b,
-    inset 0 0 1.5vw  0.2vw #e50b0b,
-    inset 0 0 0.4vw  0.2vw #e97272,
-    inset 0 0 0.5vw  0.1vw #fff7f7;
-    border-radius: .5rem; 
-    background-image: url(buttonback.jpg);
-    background-size: cover;
-    color: white
-}
-    
-
-#counter{
-    font-family: 'Nanum Pen Script', cursive;
-    font-size: 4rem;
-    letter-spacing: 5px;
-    color: #ff6f6f; 
-    text-shadow: 2px 2px #ffff
-
-}
-
-@media (hover:none), (hover:on-demand) {
-     .answer-button:hover{ 
-        background: none;
-        box-shadow: none;
-    }
-     #start:hover{ 
-        background: none;
-        box-shadow: none;
+* {
+      box-sizing: border-box;
     }
 
+.row{
+      display: flex;
+      justify-content: space-between;
 }
-
-@media(max-width: 1000px){
-
-    #title, #night-text, #number{
-        font-size: 7rem;
-    }
-
-    .answer-button{
-        width: 300px; 
-        height: 100px; 
-        font-size: 16px;
-
-    }
-
-}
-
-@media(max-width: 600px){
-
-    #title, #night-text, #number{
-        font-size: 6rem;
-    }
-    #start{
-        font-size: 3rem;
-        height: auto;
-        width: 220px;
-    }
-
-    .answer-button{
-        width: 175px; 
-        height: 75px; 
-        font-size: 10px;
-
-    }
-
-}
- 
- */
-
 html{
     max-width: 100%
 }
@@ -215,9 +14,12 @@ body {
     width:100%;
     margin: auto;
     overflow-x:hidden;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     color: #D8D8D8;
-   
+}
+
+.center{
+      margin: 0 auto;
 }
 
 #title-wrapper{
@@ -239,6 +41,8 @@ input[type="radio"] {
     max-width: 425px;
     margin: auto;
     padding: 1px;
+    border-radius: 20px;
+    
 
 }
 
@@ -262,16 +66,14 @@ input[type="radio"] {
 }
 
 #wrapper{
-    width: 100%;
-    padding: 0 12%;
-    box-sizing: border-box;
-    position: absolute;
-    top: 50%;
-    margin-top: -320px;
-    height: 640px;
-    text-align: center;
+       padding: 12%;
+       box-sizing: border-box;
+       text-align: center;
 }
 
+.results{
+      margin-top: 70%;
+}
 h2{
     text-align: left;
     font-size: 18px;
@@ -332,8 +134,9 @@ h2.question{
 
 label{
     width: 70%;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 55px;
+    letter-spacing: .5px;
 }
 
 input{
@@ -342,7 +145,7 @@ input{
     cursor: pointer;
 }
 .checkmark {
-    margin: 10px;
+    margin: 15px 10px 10px;
     float: right;
     height: 25px;
     width: 25px;
